@@ -4,6 +4,19 @@ import "@testing-library/jest-dom";
 
 //wrap all test cases inside descibe
 describe("Contact us page Test cases", () => {
+  // beforeAll(() => {
+  //   console.log("Before all");
+  // });
+  // beforeEach(() => {
+  //   console.log("Before Each");
+  // });
+  // afterAll(() => {
+  //   console.log("after All");
+  // });
+  // afterEach(() => {
+  //   console.log("after Each");
+  // });
+
   //it or test should we can use
   test("Should load contact us component", () => {
     render(<Contact />);
