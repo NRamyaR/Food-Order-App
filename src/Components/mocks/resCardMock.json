@@ -1,0 +1,91 @@
+{
+  "info": {
+    "id": "201224",
+    "name": "Asha tiffins",
+    "cloudinaryImageId": "n15vckntsiboiod3gpco",
+    "locality": "7th Sector",
+    "areaName": "Hsr Layout",
+    "costForTwo": "₹200 for two",
+    "cuisines": [
+      "South Indian",
+      "North Indian",
+      "Chinese",
+      "Desserts",
+      "Beverages"
+    ],
+    "avgRating": 4.5,
+    "veg": true,
+    "parentId": "236243",
+    "avgRatingString": "4.5",
+    "totalRatingsString": "10K+",
+    "sla": {
+      "deliveryTime": 26,
+      "lastMileTravel": 4,
+      "serviceability": "SERVICEABLE",
+      "slaString": "26 mins",
+      "lastMileTravelString": "4.0 km",
+      "iconType": "ICON_TYPE_EMPTY"
+    },
+    "availability": {
+      "nextCloseTime": "2024-01-05 15:30:00",
+      "opened": true
+    },
+    "badges": {
+      "imageBadges": [
+        {
+          "imageId": "v1695133679/badges/Pure_Veg111.png",
+          "description": "pureveg"
+        }
+      ]
+    },
+    "isOpen": true,
+    "type": "F",
+    "badgesV2": {
+      "entityBadges": {
+        "imageBased": {
+          "badgeObject": [
+            {
+              "attributes": {
+                "description": "pureveg",
+                "imageId": "v1695133679/badges/Pure_Veg111.png"
+              }
+            }
+          ]
+        },
+        "textBased": {},
+        "textExtendedBadges": {}
+      }
+    },
+    "aggregatedDiscountInfoV3": {
+      "header": "₹120 OFF",
+      "subHeader": "ABOVE ₹199",
+      "discountTag": "FLAT DEAL"
+    },
+    "orderabilityCommunication": {
+      "title": {},
+      "subTitle": {},
+      "message": {},
+      "customIcon": {}
+    },
+    "differentiatedUi": {
+      "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+      "differentiatedUiMediaDetails": {
+        "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+        "lottie": {},
+        "video": {}
+      }
+    },
+    "reviewsSummary": {},
+    "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+    "restaurantOfferPresentationInfo": {}
+  },
+  "analytics": {
+    "context": "seo-data-18baad85-de59-42a8-942b-360f87ff1fad"
+  },
+  "cta": {
+    "link": "https://www.swiggy.com/restaurants/asha-tiffins-7th-sector-hsr-layout-bangalore-201224",
+    "text": "RESTAURANT_MENU",
+    "type": "WEBLINK"
+  },
+  "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+}
