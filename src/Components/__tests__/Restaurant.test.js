@@ -1,5 +1,5 @@
+import { render, screen } from "@testing-library/react";
 import RestoCard from "../RestoCard";
-const { render, screen } = require("@testing-library/react");
 import MOCK_DATA from "../mocks/resCardMock.json";
 import "@testing-library/jest-dom";
 // import { withpromotedLabel } from "../RestoCard";

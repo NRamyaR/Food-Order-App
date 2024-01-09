@@ -4,20 +4,53 @@ import { Link } from "react-router-dom";
 import useBodyData from "../utils/useBodyData";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import Demo from "./Demo";
 import Demo2 from "./Demo2";
 
 const Body = () => {
-  const {
-    listOfRestaurant,
-    filterRestaurant,
-    searchText,
-    loading,
-    setSearchText,
-    handleSearch,
-    handleFilterTopRated,
-  } = useBodyData();
+  // const {
+  //   listOfRestaurant,
+  //   filterRestaurant,
+  //   searchText,
+  //   loading,
+  //   setSearchText,
+  //   handleSearch,
+  //   handleFilterTopRated,
+  // } = useBodyData();
+
+  // console.log(listOfRestaurant);
+  // Local State Variable - Super powerful variable
+  const [listOfRestaurants, setListOfRestraunt] = useState([]);
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  const RestaurantCardPromoted = withpromotedLabel(RestroCard);
+
+  // Whenever state variables update, react triggers a reconciliation cycle(re-renders the component)
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
+      );
+      const data = await response.json();
+
+      const restaurants =
+        data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants || [];
+      setListOfRestaurants(restaurants);
+      setFilteredRestaurant(restaurants);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   const onlineStatus = useOnlineStatus();
 
@@ -28,14 +61,16 @@ const Body = () => {
       </h1>
     );
 
+  if (loading) {
+    return <Shimmer />;
+  }
+
   //Higher orer componnet
   const RestroCardpromoted = withpromotedLabel(RestroCard);
 
   const { setUserName, loggedInUser } = useContext(UserContext);
 
-  return listOfRestaurant.length === 0 ? (
-    <Shimmer />
-  ) : (
+  return (
     <div className="body">
       {/* <div className="search">Search</div> */}
 
@@ -51,16 +86,33 @@ const Body = () => {
           />
           <button
             className="px-4 py-2 bg-green-100 m-4 rounded-lg"
-            onClick={handleSearch}
+            onClick={() => {
+              // Filter the restraunt cards and update the UI
+              // searchText
+              console.log(searchText);
+
+              const filteredRestaurant = listOfRestaurants.filter((res) =>
+                res.info.name.toLowerCase().includes(searchText.toLowerCase())
+              );
+
+              setFilteredRestaurant(filteredRestaurant);
+            }}
           >
             Search
           </button>
-          <button
-            className="px-4 py-2 bg-gray-100 rounded-lg"
-            onClick={handleFilterTopRated}
-          >
-            Top Rated Restro
-          </button>
+          <div className="search m-4 p-4 flex items-center">
+            <button
+              className="px-4 py-2 bg-gray-100 rounded-lg"
+              onClick={() => {
+                const filteredList = listOfRestaurants.filter(
+                  (res) => res.info.avgRating > 4
+                );
+                setFilteredRestaurant(filteredList);
+              }}
+            >
+              Top Rated Restaurants
+            </button>
+          </div>
         </div>
         <div className="m-4 p-4">
           <label>UserName:</label>
@@ -72,7 +124,7 @@ const Body = () => {
         </div>
       </div>
       <div className="flex flex-wrap">
-        {filterRestaurant.map((resto) => (
+        {filteredRestaurant.map((resto) => (
           <Link to={"/restaurants/" + resto.info.id} key={resto.info.id}>
             {resto.data ? (
               <RestroCardpromoted resData={resto} /> //Higher orer componnet
@@ -81,7 +133,6 @@ const Body = () => {
             )}
           </Link>
         ))}
-        ß
       </div>
     </div>
   );

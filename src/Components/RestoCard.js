@@ -6,6 +6,7 @@ const RestroCard = (props) => {
   const { loggedInUser } = useContext(UserContext);
   const { cloudinaryImageId, name, cuisines, avgRating, costForTwo, sla } =
     resData?.info;
+
   return (
     <div
       data-testid="resCard"
