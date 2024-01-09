@@ -1,0 +1,203 @@
+Commands:
+git init
+git branch -m main
+git add .
+git commit -m "initial commit"
+git remote origin ""//take it from github
+git push origin main
+
+npm init
+npm install -D parcel (npm doc fetching package from there)
+npx parcel index.html
+npm install react
+npm install react-dom
+npx parcel build index.html(production build)
+
+- NPM (Package Manager):
+
+* NPM => NPM doesn't stands for "node package manager" but it manage packages
+  its a standard repository for all the packages. If you need to include in your package you need to use NPM
+
+-PACKAGE.JSON is a configuration for NPM
+-PACKAGE is dependency
+-npm will take care of version of package
+
+- BUNDLER (webpack, parcel, veet):
+  -JS, CSS, Whole code needs to be clean/minify/bundles/packgages together
+  -It will push the code to production
+
+_Two types of package/Dependency_
+dev dependecy - it generally require for developing
+normal dependency - used it in productions
+
+\*PARCEL:
+-caret (^): If tomorrow, new version is added it will automatically updated with new version
+-Tild(~): It will automtatically upgrade to major version
+
+\*PACKAGE-LOCK.JSON:
+
+- keeps the track(record) of exact version of the dependency which is intsalled (parcel:2.10.3)
+  -Integrity: sha512(its working on my local but its not working on production )
+  to avoid that verify whatever is there in local to be there in production
+  -node module (contains the actuall data of dependency)
+  -fetch all the code from parcel put inside nodemodules
+
+\*Transitive Dependency:
+-our project dependent on depency parcel and parcel has project its own dependency and those dependency have their own dependency
+-parcel need other dependency so its there in node module. so parcel needed
+
+- How many package and package-lock.json?
+  not 1 and all libraries has its own dependcy (package n pkg-lock.json)
+
+-NPX :
+when we do npx executing the package
+
+-CDN LINKs are not preferred way of doing
+
+**_npx parcel build index.html_**
+We need to remove main:APP.js in package.json \*\*\*\*
+
+*npm start / npm run start = npx parcel index.html
+*npm run build = npx parcel build index.html
+
+\*\*JSX
+-Its not HTML inside Javascript
+-Its HTML Like Syntax and more like XML/HTML like Syntax
+
+-Jsx transpiled before its reaches the JS
+-transpile is done by Parcel.Its doesn't do by itself, it has babel its a package, and transpiler, converts JSX into browser understanding code
+
+-various attritubute Tags in JSX? explore
+
+-JSX takecare of Injection attack
+-It will sanitize the data and pass it
+-it prevent cross site scripting attack
+
+Best Procatice
+-Never keep hardcoded string inside component
+
+-Never Keep hardcoded data in component
+-Never use image URL inside component
+-Every component should have 100 line below
+
+**_Config driven UI_**
+
+Two types of Export/Import
+
+1.  Named Export/Import -
+    eg: import {CDN_LINK} from './constnat'
+    export const CDN_LINK = 'https://wow.com'
+2.  Default Export/Import
+    eg: import app from './app'
+    const App= ()=>{
+
+        }
+        export default App
+
+-React is fast in Dom Manipulation
+-Whenver state variable updates/changes the react will rerender the components
+
+-Hook is nothing but normal function
+-its has its own specifccation
+\*useState
+
+- useEffect -
+  -Its come from react library
+  -it will take two arguments, first argumenet is callback function and second arg is dependecy array
+  -it will call after render component
+
+-whenever state variable updates, react triggers a reconciliation cycle(re-render the component)
+
+\*USEEFFECT
+-if no dependency array =>useEffect is called on every render
+-if dependency array is empty array =[]=>useEffect is called on intital render (just once)
+-if dependency array is [count]=> called everytime count is updated
+eg: useEffect(()=>{
+console.log('useEffect callled')
+},[count])
+
+==Never create UseState inside if block
+-always put in top when function starts
+
+\*\*Routing Configuration
+configuration means information that will tell if we call that route
+
+-path is an object
+-react router dom give access us to "UseRouteError Hook"
+
+- RRDom give us LINK
+
+- we can navigate to different page without reloading
+
+-Microservice vs Monalith
+-why do we use super keyword in class based component
+
+-Class COmponent
+-Life Cycle method
+*Constructor
+*Render
+\*componentDidMount() ==> To make an API Call
+
+/\***\*\*\*\*\***
+Mounting
+
+-constructor(dummy)
+-Render
+-ComponendDidMount()
+
+- API call
+  -this.setState ->state variable is updated
+- ---Update
+  -render(api data) -<Html> new API data
+  -Component Update
+
+--Never compare lifecycle method to functional component
+-UseEffect not equal to componentDidmount
+
+-Why do we use constructor and super in class component
+why we need to add async in componentdidmount and not in useEffect
+
+HIGHER ORDER COMPONENT
+-The component which takes component and return component
+\_it acts like enhancer
+HOC which take component as input and enhances the component n return it back
+-Its pure function
+
+-Controlled (parent component controlled child component)
+Uncontrolled component (there is no controlled by parent)
+-Lifiting Up data
+
+All application Two layer
+-UI layaer (JSX)
+-Data Layer(props, state , local variables, js)
+
+\*\*UI layer is powered by Data layer
+
+-Props drilling
+Drilling props to bring it upto bottom
+
+-React Context :
+-Context solve Props drilling
+-Its store it will store all the data
+
+# Testing
+
+- React Testing Library
+- Jest
+
+* commands:
+  npm i -D @testing-library/react
+  npm i -D jest
+  npm install --save-dev babel-jest @babel/core @babel/preset-env
+  npm run test (succesuflly configured)
+  npx jest --init
+  npm install --save-dev jest-environment-jsdom
+
+" \_ \_ = dunder tests"
+
+--npm run watch --test will run automatically
+
+//react-dom/test-utils
+-act =>returns promise we have to await (test cases should async)
+-screen
+-render

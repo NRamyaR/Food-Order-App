@@ -1,0 +1,49 @@
+//APP.js
+const parent = React.createElement(
+  "div",
+  { id: "parent" },
+  React.createElement(
+    "div",
+    { id: "child" },
+    React.createElement("h1", { id: "head" }, "This is React🚀")
+  ),
+  React.createElement("div", { id: "child" }, [
+    React.createElement("h1", { id: "head" }, "I'm h1 Tag"),
+    React.createElement("h2", { id: "head2" }, "I'm h2 Tag"),
+  ])
+);
+//if sibling
+// const parent2 = React.createElement(
+//   "div",
+//   { id: "parent" },
+//   React.createElement("div", { id: "child" }, [
+//     React.createElement("h1", { id: "head" }, "I'm h1 Tag"),
+//     React.createElement("h2", { id: "head2" }, "I'm h2 Tag"),
+//   ])
+// );
+
+// const heading = React.createElement(
+//   "h1",
+//   { id: "heading", xyx: "abc" },
+//   "Hello world from React"
+// );
+
+// console.log(parent);
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// root.render(parent);
+
+//APP.js end
+
+//////////
+//React.createElement = ReactElememnt(object)=>HTMLElement(render)
+const heading = React.createElement("h1", { id: "heading" }, "hello world");
+
+console.log(heading);
+
+//JSX(transpiled before it reaches the js) = PARCEL -Babel
+
+//JSX => React.createElement => ReactElement-JS objecr=>HTMLElement(render)
+const jsxHeading = <h1 id="heading">React using JSX</h1>;
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(jsxHeading);

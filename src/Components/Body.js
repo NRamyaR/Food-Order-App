@@ -1,4 +1,4 @@
-import RestroCard, { withpromotedLabel } from "./RestoCard";
+import RestoCard, { withpromotedLabel } from "./RestoCard";
 import Shimmer from "./shimmer";
 import { Link } from "react-router-dom";
 import useBodyData from "../utils/useBodyData";
@@ -26,7 +26,7 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const RestaurantCardPromoted = withpromotedLabel(RestroCard);
+  const RestaurantCardPromoted = withpromotedLabel(RestoCard);
 
   // Whenever state variables update, react triggers a reconciliation cycle(re-renders the component)
 
@@ -44,7 +44,7 @@ const Body = () => {
       const restaurants =
         data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants || [];
-      setListOfRestaurants(restaurants);
+      setListOfRestraunt(restaurants);
       setFilteredRestaurant(restaurants);
       setLoading(false);
     } catch (error) {
@@ -66,7 +66,7 @@ const Body = () => {
   }
 
   //Higher orer componnet
-  const RestroCardpromoted = withpromotedLabel(RestroCard);
+  const RestroCardpromoted = withpromotedLabel(RestoCard);
 
   const { setUserName, loggedInUser } = useContext(UserContext);
 
@@ -100,20 +100,21 @@ const Body = () => {
           >
             Search
           </button>
-          <div className="search m-4 p-4 flex items-center">
-            <button
-              className="px-4 py-2 bg-gray-100 rounded-lg"
-              onClick={() => {
-                const filteredList = listOfRestaurants.filter(
-                  (res) => res.info.avgRating > 4
-                );
-                setFilteredRestaurant(filteredList);
-              }}
-            >
-              Top Rated Restaurants
-            </button>
-          </div>
         </div>
+        <div className="search m-4 p-4 flex items-center">
+          <button
+            className="px-4 py-2 bg-gray-100 rounded-lg"
+            onClick={() => {
+              const filteredList = listOfRestaurants.filter(
+                (res) => res.info.avgRating > 4
+              );
+              setFilteredRestaurant(filteredList);
+            }}
+          >
+            Top Rated Restaurants
+          </button>
+        </div>
+
         <div className="m-4 p-4">
           <label>UserName:</label>
           <input
@@ -123,13 +124,13 @@ const Body = () => {
           />
         </div>
       </div>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap ">
         {filteredRestaurant.map((resto) => (
-          <Link to={"/restaurants/" + resto.info.id} key={resto.info.id}>
-            {resto.data ? (
-              <RestroCardpromoted resData={resto} /> //Higher orer componnet
+          <Link to={"/restaurants/" + resto?.info.id} key={resto?.info.id}>
+            {resto?.info.promoted ? (
+              <RestroCardpromoted resData={resto?.info} /> //Higher orer componnet
             ) : (
-              <RestroCard resData={resto} />
+              <RestoCard resData={resto?.info} />
             )}
           </Link>
         ))}

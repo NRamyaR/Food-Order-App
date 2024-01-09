@@ -1,16 +1,16 @@
 import { useContext } from "react";
 import { CDN_LINK } from "../utils/constants";
 import UserContext from "../utils/UserContext";
-const RestroCard = (props) => {
+const RestoCard = (props) => {
   const { resData } = props;
   const { loggedInUser } = useContext(UserContext);
   const { cloudinaryImageId, name, cuisines, avgRating, costForTwo, sla } =
-    resData?.info;
+    resData;
 
   return (
     <div
       data-testid="resCard"
-      className="m-4 p-4 w-[200px] bg-gray-50 rounded-lg hover:bg-gray-200"
+      className="m-4 p-4 w-[250px] bg-gray-50 rounded-lg hover:bg-gray-200"
     >
       <img
         className="rounded-lg"
@@ -29,17 +29,17 @@ const RestroCard = (props) => {
 
 //Higher order component
 //Input - RestroCard output => RestroCardpromoted
-export const withpromotedLabel = (RestroCard) => {
+export const withpromotedLabel = (RestoCard) => {
   return (props) => {
     return (
       <div>
         <label className="absolute bg-black text-white m-2 p-2 rounded-lg">
           Promoted
         </label>
-        <RestroCard {...props} />
+        <RestoCard {...props} />
       </div>
     );
   };
 };
 
-export default RestroCard;
+export default RestoCard;

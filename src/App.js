@@ -18,13 +18,9 @@ import Demo from "./Components/Demo";
 //On Demand Loading
 //dynamic import
 
-const Grocery = lazy(() => {
-  import("./Components/Grocery");
-});
+const Grocery = lazy(() => import("./components/Grocery"));
 
-const About = lazy(() => {
-  import("./Components/About");
-});
+const About = lazy(() => import("./Components/About"));
 
 const AppLayout = () => {
   //authentication
